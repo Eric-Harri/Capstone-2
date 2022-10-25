@@ -30,7 +30,7 @@ function loadSearchType() {
 }
 
 function loadTableBody() {
-  selectedValue = stateTerriField.value;
+  let selectedValue = stateTerriField.value;
   nationalParkByLocationInfoTableBody.innerHTML = "";
 
   if (byLocationField.checked) {
