@@ -11,7 +11,7 @@ labelChange.innerHTML = "";
 
 function loadSearchType() {
   stateTerriField.innerHTML = "";
-  let option = new Option("Select...", "");
+  let option = new Option("Select...", " ");
   stateTerriField.appendChild(option);
 
   if (byLocationField.checked) {
@@ -32,6 +32,7 @@ function loadSearchType() {
 function loadTableBody() {
   selectedValue = stateTerriField.value;
   nationalParkByLocationInfoTableBody.innerHTML = "";
+
   if (byLocationField.checked) {
     nationalParksArray.forEach((park) => {
       if (selectedValue === park.State) {
@@ -40,9 +41,9 @@ function loadTableBody() {
     });
   } else if (byTypeField.checked) {
     nationalParksArray.forEach((park) => {
-        if (park.LocationName.includes(selectedValue)) {
-          buildLocationInfoRow(nationalParkByLocationInfoTableBody, park);
-        }
+      if (park.LocationName.includes(selectedValue)) {
+        buildLocationInfoRow(nationalParkByLocationInfoTableBody, park);
+      }
     });
   }
 }
@@ -76,6 +77,7 @@ function buildLocationInfoRow(tablebody, nationalPark) {
     a.appendChild(link);
     a.innerText = "Visit";
     a.href = nationalPark.Visit;
+    a.target = "_blank";
     cell7.appendChild(a);
   }
 }
