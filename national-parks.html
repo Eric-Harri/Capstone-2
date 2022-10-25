@@ -14,15 +14,14 @@
         <main class="container">
             <h1>National Parks</h1>
             <div>
-                <input type="radio" name="by-select" id="byLocationField" checked>
+                <input type="radio" name="by-select" id="byLocationField" value="by-location">
                 <label for="by-location">States/Territories</label>
-                <input type="radio" name="by-select" id="byTypeField">
+                <input type="radio" name="by-select" id="byTypeField" value="by-type">
                 <label for="by-type">Park Type</label>
             </div>
 
-            <label for="states/territories">States/Territories</label>
+            <label id="labelChange" for=""></label>
             <select name="states/territories" id="stateTerriField">
-                <option value="">Select...</option>
             </select>
 
             <table class="table">
