@@ -1,30 +1,50 @@
 "strict use";
 
-console.log(locationsArray);
-
 const stateTerriField = document.getElementById("stateTerriField");
 const byLocationField = document.getElementById("byLocationField");
 const byTypeField = document.getElementById("byTypeField");
 const nationalParkByLocationInfoTableBody = document.getElementById(
   "nationalParkByLocationInfoTableBody"
 );
+const labelChange = document.getElementById("labelChange");
+labelChange.innerHTML = "";
 
-function loadStateTerriField() {
-  locationsArray.forEach((location) => {
-    let newOption = new Option(location, location);
-    stateTerriField.appendChild(newOption);
-  });
+function loadSearchType() {
+  stateTerriField.innerHTML = "";
+  let option = new Option("Select...", "");
+  stateTerriField.appendChild(option);
+
+  if (byLocationField.checked) {
+    labelChange.innerHTML = "States/Territories";
+    locationsArray.forEach((location) => {
+      let newOption = new Option(location, location);
+      stateTerriField.appendChild(newOption);
+    });
+  } else if (byTypeField.checked) {
+    labelChange.innerHTML = "Park Type";
+    parkTypesArray.forEach((park) => {
+      let newOption = new Option(park, park);
+      stateTerriField.appendChild(newOption);
+    });
+  }
 }
 
 function loadTableBody() {
   selectedValue = stateTerriField.value;
-
   nationalParkByLocationInfoTableBody.innerHTML = "";
-  nationalParksArray.forEach((park) => {
-    if (selectedValue === park.State) {
-      buildLocationInfoRow(nationalParkByLocationInfoTableBody, park);
-    }
-  });
+  if (byLocationField.checked) {
+    nationalParksArray.forEach((park) => {
+      if (selectedValue === park.State) {
+        buildLocationInfoRow(nationalParkByLocationInfoTableBody, park);
+      }
+    });
+  } else if (byTypeField.checked) {
+    nationalParksArray.forEach((park) => {
+        if (park.LocationName.includes(selectedValue)) {
+          buildLocationInfoRow(nationalParkByLocationInfoTableBody, park);
+        }
+    });
+  }
 }
 
 function buildLocationInfoRow(tablebody, nationalPark) {
@@ -52,7 +72,7 @@ function buildLocationInfoRow(tablebody, nationalPark) {
 
   if (nationalPark.Visit) {
     const a = document.createElement("a");
-    link = document.createTextNode(nationalPark.Visit);
+    let link = document.createTextNode(nationalPark.Visit);
     a.appendChild(link);
     a.innerText = "Visit";
     a.href = nationalPark.Visit;
@@ -61,7 +81,8 @@ function buildLocationInfoRow(tablebody, nationalPark) {
 }
 
 window.onload = () => {
-  loadStateTerriField();
+  loadSearchType();
+  onclick = loadSearchType;
 
   stateTerriField.onchange = loadTableBody;
 };
