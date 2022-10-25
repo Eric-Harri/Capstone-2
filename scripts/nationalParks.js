@@ -7,7 +7,7 @@ const nationalParkByLocationInfoTableBody = document.getElementById(
   "nationalParkByLocationInfoTableBody"
 );
 const labelChange = document.getElementById("labelChange");
-labelChange.innerHTML = "";
+
 
 function loadSearchType() {
   stateTerriField.innerHTML = "";
@@ -85,6 +85,6 @@ function buildLocationInfoRow(tablebody, nationalPark) {
 window.onload = () => {
   loadSearchType();
   onclick = loadSearchType;
-
   stateTerriField.onchange = loadTableBody;
+  
 };

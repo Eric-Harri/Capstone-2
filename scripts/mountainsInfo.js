@@ -23,35 +23,56 @@ function loadMountainInfo() {
 }
 
 function buildMountainCard(section, mountain) {
-    //created the card
-    const div = document.createElement("div")
-    div.className = "card"
-    //put inside the document 
-    section.appendChild(div)
-    //create the title
-    let cardTitle = document.createElement("h5")
-    cardTitle.className = "card-title"
-    cardTitle.innerText = mountain.name;
-    //add the description
-    let desc = document.createElement("p")
-    desc.innerText = mountain.desc;
-    //add the elevation
-    let elevation = document.createElement("p")
-    elevation.innerText = mountain.elevation;
-    //add additional info
-    let addInfo = document.createElement("p")
-    addInfo.innerText = `effort: ${mountain.effort} coo`
+  //created the card
+  const div = document.createElement("div");
+  div.className = "card";
+  //put inside the document or card section which is a div being used
+  section.appendChild(div);
+  //create the title
+  let cardTitle = document.createElement("h5");
+  cardTitle.className = "card-title";
+  cardTitle.innerText = mountain.name;
+  //add the description
+  let desc = document.createElement("p");
+  desc.innerText = mountain.desc;
+  //add the elevation
+  let elevation = document.createElement("p");
+  elevation.innerText = `${mountain.elevation} ft`;
+  //add additional info
+  let addInfo = document.createElement("p");
+  addInfo.innerText = `Effort: ${mountain.effort}
+    Coordinates: ${mountain.coords.lat}, ${mountain.coords.lng}`;
+  //button
+  let removeBtn = document.createElement("button");
+  removeBtn.className = "btn btn-danger";
+    removeBtn.innerText = "remove";
+    //button function
+    function removeCard() {
+        section.removeChild(div);
+    };
 
-    const divBody = document.createElement("div")
-    divBody.className = "card-body"
-    div.appendChild(divBody)
-    divBody.appendChild(para)
-     
+    removeBtn.onclick = removeCard;
+
+  const divBody = document.createElement("div");
+  divBody.className = "card-body";
+  div.appendChild(divBody);
+  divBody.append(cardTitle, desc, elevation, addInfo, removeBtn);
 }
+function clearScreen() {
+      let cardSection = document.querySelector("#card-section");
+
+      let cards = document.querySelectorAll("#card-section .card");
+      cards.forEach((card) => cardSection.removeChild(card));
+}
+
 
 
 
 window.onload = () => {
     loadMountSelect();
     mountainField.onchange = loadMountainInfo;
+    const clearBtn = document.getElementById('clearBtn')
+
+    clearBtn.onclick = clearScreen;
+
 }

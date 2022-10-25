@@ -11,16 +11,35 @@
     </head>
 
     <body>
+        <!-- Navigation -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Mountains</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link link-danger dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">Places</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="./index.html">Home</a></li>
+                    <li><a class="dropdown-item" href="./national-parks.html">Parks</a></li>
+                    <li><a class="dropdown-item" href="https://github.com/Eric-Harri">My Github</a></li>
+                </ul>
+            </li>
+        </ul>
+        <!-- Navigation -->
+
         <main class="container">
             <h1>Mountains</h1>
-            
+
 
             <label id="labelChange" for="mountainsField">Choose:</label>
             <select name="mountains" id="mountainsField">
             </select>
+            <button id="clearBtn" class="btn btn-danger">Clear</button>
 
-           <div id="card-section" class="container">
-           </div>
+            <div id="card-section" class="container">
+            </div>
+
         </main>
 
 
