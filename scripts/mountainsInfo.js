@@ -4,22 +4,22 @@ const mountainField = document.getElementById("mountainsField");
 const cardSection = document.getElementById("card-section");
 
 function loadMountSelect() {
-    mountainField.innerHTML = "";
-    let option = new Option("Select...", " ");
-    mountainField.appendChild(option);
-    mountainsArray.forEach((mountain) => {
-        let newOption = new Option(mountain.name, mountain.name)
-        mountainField.appendChild(newOption);
-    })
+  mountainField.innerHTML = "";
+  let option = new Option("Select...", " ");
+  mountainField.appendChild(option);
+  mountainsArray.forEach((mountain) => {
+    let newOption = new Option(mountain.name, mountain.name);
+    mountainField.appendChild(newOption);
+  });
 }
 
 function loadMountainInfo() {
-    let selectedValue = mountainField.value
-    mountainsArray.forEach((mountain) => {
-        if (selectedValue === mountain.name) {
-            buildMountainCard(cardSection, mountain)
-        }
-    })
+  let selectedValue = mountainField.value;
+  mountainsArray.forEach((mountain) => {
+    if (selectedValue === mountain.name) {
+      buildMountainCard(cardSection, mountain);
+    }
+  });
 }
 
 function buildMountainCard(section, mountain) {
@@ -28,6 +28,12 @@ function buildMountainCard(section, mountain) {
   div.className = "card";
   //put inside the document or card section which is a div being used
   section.appendChild(div);
+  //create image
+  let cardImg = document.createElement("img");
+  cardImg.className = "card-img-top";
+  cardImg.alt = mountain.name;
+  cardImg.src = "images/" + mountain.img;
+
   //create the title
   let cardTitle = document.createElement("h5");
   cardTitle.className = "card-title";
@@ -45,34 +51,40 @@ function buildMountainCard(section, mountain) {
   //button
   let removeBtn = document.createElement("button");
   removeBtn.className = "btn btn-danger";
-    removeBtn.innerText = "remove";
-    //button function
-    function removeCard() {
-        section.removeChild(div);
-    };
+  removeBtn.innerText = "remove";
+  //button function
+  function removeCard() {
+    section.removeChild(div);
+  }
 
-    removeBtn.onclick = removeCard;
+  removeBtn.onclick = removeCard;
 
   const divBody = document.createElement("div");
   divBody.className = "card-body";
   div.appendChild(divBody);
-  divBody.append(cardTitle, desc, elevation, addInfo, removeBtn);
+  divBody.append(cardImg, cardTitle, desc, elevation, addInfo, removeBtn);
 }
+
 function clearScreen() {
-      let cardSection = document.querySelector("#card-section");
+  let cardSection = document.querySelector("#card-section");
 
-      let cards = document.querySelectorAll("#card-section .card");
-      cards.forEach((card) => cardSection.removeChild(card));
+  let cards = document.querySelectorAll("#card-section .card");
+  cards.forEach((card) => cardSection.removeChild(card));
 }
 
-
-
+function displayMounts() {
+    mountainsArray.forEach((mountain) => {
+        buildMountainCard(cardSection, mountain)
+    });
+}
 
 window.onload = () => {
-    loadMountSelect();
-    mountainField.onchange = loadMountainInfo;
-    const clearBtn = document.getElementById('clearBtn')
+  loadMountSelect();
+  mountainField.onchange = loadMountainInfo;
+  const clearBtn = document.getElementById("clearBtn");
 
-    clearBtn.onclick = clearScreen;
+  clearBtn.onclick = clearScreen;
+  const displayAllMountsBtn = document.getElementById("displayAllMounts");
 
-}
+  displayAllMountsBtn.onclick = displayMounts;
+};
