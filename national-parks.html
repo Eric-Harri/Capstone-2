@@ -6,11 +6,24 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>National Parks Search</title>
+        <link rel="stylesheet" href="./styles/style.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     </head>
 
     <body>
+        <header>
+            <nav class="navbar bg-dark">
+                <div class="container-fluid">
+                    <span class="navbar-brand mb-0 h1 text-light">Harris Mountain Park Services</span>
+                </div>
+            </nav>
+        </header>
+
+        <div id="bg-img-text">
+            <p class="text-light">Welcome to the National Parks Page</p>
+        </div>
+
         <!-- Navigation -->
         <ul class="nav nav-tabs">
             <li class="nav-item">
@@ -30,26 +43,34 @@
 
 
         <main class="container">
-            <h1>National Parks</h1>
-            <div>
-                <input type="radio" name="by-select" id="byLocationField" value="by-location">
-                <label for="by-location">States/Territories</label>
-                <input type="radio" name="by-select" id="byTypeField" value="by-type">
-                <label for="by-type">Park Type</label>
+            <h1 class="text-center m-2">National Parks</h1>
+                <div id="displayCenter">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="btnradio" id="byLocationField" autocomplete="off" >
+                <label class="btn btn-outline-primary" for="byLocationField">States/Territories</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="byTypeField" autocomplete="off">
+                <label class="btn btn-outline-primary" for="byTypeField">Park Type</label>
+                </div>
+                </div>
+
+      
+            <div class="row">
+                <label class="form-label float-right" id="labelChange" for="labelChange">Choose Button</label>
+                <div class="col-4">
+                <select class="mb-3 col-6 form-select " name="stateTerriField" id="stateTerriField">
+                </select>
+                </div>
             </div>
 
-            <label id="labelChange" for="labelChange">Choose Button</label>
-            <select name="stateTerriField" id="stateTerriField">
-            </select>
-
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Address</th>
                         <th>City</th>
                         <th>State</th>
-                        <th>Zip</th>
+                        <th>Zip Code</th>
                         <th>Phone</th>
                         <th>Website</th>
                     </tr>

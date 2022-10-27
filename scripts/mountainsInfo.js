@@ -23,11 +23,19 @@ function loadMountainInfo() {
 }
 
 function buildMountainCard(section, mountain) {
+  //create col div for BS
+  let colDiv = document.createElement("div")
+  colDiv.className = "col"
+
+
   //created the card
   const div = document.createElement("div");
   div.className = "card";
+  div.style = "width: 22em;"
   //put inside the document or card section which is a div being used
-  section.appendChild(div);
+  section.appendChild(colDiv);
+  colDiv.appendChild(div)
+  
   //create image
   let cardImg = document.createElement("img");
   cardImg.className = "card-img-top";
@@ -54,21 +62,22 @@ function buildMountainCard(section, mountain) {
   removeBtn.innerText = "remove";
   //button function
   function removeCard() {
-    section.removeChild(div);
+    colDiv.removeChild(div);
   }
 
   removeBtn.onclick = removeCard;
 
   const divBody = document.createElement("div");
   divBody.className = "card-body";
+  div.appendChild(cardImg);
   div.appendChild(divBody);
-  divBody.append(cardImg, cardTitle, desc, elevation, addInfo, removeBtn);
+  divBody.append(cardTitle, desc, elevation, addInfo, removeBtn);
 }
 
 function clearScreen() {
   let cardSection = document.querySelector("#card-section");
 
-  let cards = document.querySelectorAll("#card-section .card");
+  let cards = document.querySelectorAll("#card-section .col");
   cards.forEach((card) => cardSection.removeChild(card));
 }
 

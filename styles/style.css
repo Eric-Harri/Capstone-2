@@ -1,0 +1,21 @@
+#bg-img-text {
+  background-image: url("../images/HomeOfImage.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 12em;
+  width: auto;
+  display: flex;
+  justify-content: ;
+}
+#bg-img-text p {
+  display: flex;
+  flex-direction: column-reverse;
+  margin-left: 1em; 
+
+}
+
+#displayCenter {
+  display: flex;
+  justify-content: center;
+
+}
